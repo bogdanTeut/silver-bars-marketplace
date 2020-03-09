@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 import com.silverbarsmarketplace.orders.domain.Order;
 import com.silverbarsmarketplace.orders.domain.OrderSummary;
 import com.silverbarsmarketplace.orders.domain.OrderType;
-import com.silverbarsmarketplace.orders.exception.OrderNorFoundExceptionFound;
+import com.silverbarsmarketplace.orders.exception.OrderNorFoundException;
 import com.silverbarsmarketplace.orders.repository.OrderRepository;
 import com.silverbarsmarketplace.orders.validator.OrderValidator;
 import com.silverbarsmarketplace.orders.validator.OrderValidatorImpl;
@@ -186,7 +186,7 @@ public class LiveOrderBoardTest {
         Mockito.verify(this.orderRepository).delete(order);
     }
 
-    @Test(expectedExceptions = OrderNorFoundExceptionFound.class)
+    @Test(expectedExceptions = OrderNorFoundException.class)
     public void givenOrderNotFound_whenCancelingOrder_thenOrderNorFoundExceptionFound() {
         //given
         Order order = new Order("user1", 3.5, 303.0, SELL);
@@ -325,6 +325,6 @@ public class LiveOrderBoardTest {
     }
 
     private void stubOrderNotFound(final Order order) {
-        Mockito.doThrow(new OrderNorFoundExceptionFound()).when(this.orderRepository).delete(order);
+        Mockito.doThrow(new OrderNorFoundException()).when(this.orderRepository).delete(order);
     }
 }
