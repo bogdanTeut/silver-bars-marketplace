@@ -1,3 +1,6 @@
 .gitignore.swp
 .idea/
+silver-bars-marketplace.iml\
+.DS_Store
+target/
 silver-bars-marketplace.iml
